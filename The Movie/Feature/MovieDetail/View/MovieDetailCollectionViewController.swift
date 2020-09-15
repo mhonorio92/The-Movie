@@ -21,8 +21,13 @@ class MovieDetailCollectionViewController: UICollectionViewController, UICollect
         setupCollectionView()
 
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     fileprivate func setupCollectionView() {
+        collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.register(SimilarMovieCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: reuseIdentifierHeader)
     }

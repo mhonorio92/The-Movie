@@ -16,6 +16,7 @@
 		2EFD44D0251147B40037E4FD /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD44CF251147B40037E4FD /* HeaderCollectionReusableView.swift */; };
 		2EFD44D22511521E0037E4FD /* SimilarMovieCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD44D12511521E0037E4FD /* SimilarMovieCollectionReusableView.swift */; };
 		2EFD44D5251155400037E4FD /* ViewCodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD44D4251155400037E4FD /* ViewCodeProtocol.swift */; };
+		2EFD44DA25117B5D0037E4FD /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD44D925117B5D0037E4FD /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		2EFD44CF251147B40037E4FD /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		2EFD44D12511521E0037E4FD /* SimilarMovieCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMovieCollectionReusableView.swift; sourceTree = "<group>"; };
 		2EFD44D4251155400037E4FD /* ViewCodeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodeProtocol.swift; sourceTree = "<group>"; };
+		2EFD44D925117B5D0037E4FD /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 		2EFD44C9251114640037E4FD /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				2EFD44D6251173E20037E4FD /* Extensions */,
 				2EFD44D32511550B0037E4FD /* Protocol */,
 				2EFD44CA251114760037E4FD /* Model */,
 			);
@@ -183,6 +186,14 @@
 				2EFD44D4251155400037E4FD /* ViewCodeProtocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		2EFD44D6251173E20037E4FD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2EFD44D925117B5D0037E4FD /* UIView+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EFD44DA25117B5D0037E4FD /* UIView+Extension.swift in Sources */,
 				2ED1A88E2510FE8F0042AB2D /* AppDelegate.swift in Sources */,
 				2EFD44CE251143060037E4FD /* MovieDetailCollectionViewController.swift in Sources */,
 				2EFD44D5251155400037E4FD /* ViewCodeProtocol.swift in Sources */,
