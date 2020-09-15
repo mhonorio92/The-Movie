@@ -3,17 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2ED1A88E2510FE8F0042AB2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED1A88D2510FE8F0042AB2D /* AppDelegate.swift */; };
-		2ED1A8902510FE8F0042AB2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED1A88F2510FE8F0042AB2D /* SceneDelegate.swift */; };
-		2ED1A8922510FE8F0042AB2D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED1A8912510FE8F0042AB2D /* ContentView.swift */; };
 		2ED1A8942510FE920042AB2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ED1A8932510FE920042AB2D /* Assets.xcassets */; };
 		2ED1A8972510FE920042AB2D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ED1A8962510FE920042AB2D /* Preview Assets.xcassets */; };
 		2ED1A89A2510FE920042AB2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ED1A8982510FE920042AB2D /* LaunchScreen.storyboard */; };
 		2ED1A8A52510FE920042AB2D /* The_MovieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED1A8A42510FE920042AB2D /* The_MovieTests.swift */; };
+		2EFD44C82511122E0037E4FD /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD44C72511122E0037E4FD /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,8 +28,6 @@
 /* Begin PBXFileReference section */
 		2ED1A88A2510FE8F0042AB2D /* The Movie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Movie.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ED1A88D2510FE8F0042AB2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2ED1A88F2510FE8F0042AB2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2ED1A8912510FE8F0042AB2D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2ED1A8932510FE920042AB2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2ED1A8962510FE920042AB2D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2ED1A8992510FE920042AB2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -38,6 +35,7 @@
 		2ED1A8A02510FE920042AB2D /* The MovieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "The MovieTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ED1A8A42510FE920042AB2D /* The_MovieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_MovieTests.swift; sourceTree = "<group>"; };
 		2ED1A8A62510FE920042AB2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2EFD44C72511122E0037E4FD /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +77,8 @@
 		2ED1A88C2510FE8F0042AB2D /* The Movie */ = {
 			isa = PBXGroup;
 			children = (
-				2ED1A88D2510FE8F0042AB2D /* AppDelegate.swift */,
-				2ED1A88F2510FE8F0042AB2D /* SceneDelegate.swift */,
-				2ED1A8912510FE8F0042AB2D /* ContentView.swift */,
+				2EFD44C125110FEC0037E4FD /* Main */,
+				2EFD44C3251110680037E4FD /* Feature */,
 				2ED1A8932510FE920042AB2D /* Assets.xcassets */,
 				2ED1A8982510FE920042AB2D /* LaunchScreen.storyboard */,
 				2ED1A89B2510FE920042AB2D /* Info.plist */,
@@ -105,6 +102,54 @@
 				2ED1A8A62510FE920042AB2D /* Info.plist */,
 			);
 			path = "The MovieTests";
+			sourceTree = "<group>";
+		};
+		2EFD44C125110FEC0037E4FD /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2EFD44C2251110160037E4FD /* Model */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2EFD44C2251110160037E4FD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2ED1A88D2510FE8F0042AB2D /* AppDelegate.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2EFD44C3251110680037E4FD /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				2EFD44C42511107C0037E4FD /* MovieDetail */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		2EFD44C42511107C0037E4FD /* MovieDetail */ = {
+			isa = PBXGroup;
+			children = (
+				2EFD44C62511109A0037E4FD /* View */,
+				2EFD44C52511108B0037E4FD /* ViewModel */,
+			);
+			path = MovieDetail;
+			sourceTree = "<group>";
+		};
+		2EFD44C52511108B0037E4FD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2EFD44C62511109A0037E4FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2EFD44C72511122E0037E4FD /* MovieDetailViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,15 +202,17 @@
 				TargetAttributes = {
 					2ED1A8892510FE8F0042AB2D = {
 						CreatedOnToolsVersion = 11.3;
+						ProvisioningStyle = Automatic;
 					};
 					2ED1A89F2510FE920042AB2D = {
 						CreatedOnToolsVersion = 11.3;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 2ED1A8892510FE8F0042AB2D;
 					};
 				};
 			};
 			buildConfigurationList = 2ED1A8852510FE8F0042AB2D /* Build configuration list for PBXProject "The Movie" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -209,8 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ED1A88E2510FE8F0042AB2D /* AppDelegate.swift in Sources */,
-				2ED1A8902510FE8F0042AB2D /* SceneDelegate.swift in Sources */,
-				2ED1A8922510FE8F0042AB2D /* ContentView.swift in Sources */,
+				2EFD44C82511122E0037E4FD /* MovieDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,8 +398,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -366,14 +411,12 @@
 				DEVELOPMENT_ASSET_PATHS = "\"The Movie/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "The Movie/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mhonorio92.The-Movie";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -385,14 +428,12 @@
 				DEVELOPMENT_ASSET_PATHS = "\"The Movie/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "The Movie/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mhonorio92.The-Movie";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -404,11 +445,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "The MovieTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mhonorio92.The-MovieTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -425,11 +462,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "The MovieTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mhonorio92.The-MovieTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
