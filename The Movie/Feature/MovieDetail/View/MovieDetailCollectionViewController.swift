@@ -23,7 +23,7 @@ class MovieDetailCollectionViewController: UICollectionViewController, UICollect
     }
 
     fileprivate func setupCollectionView() {
-        collectionView.register(SimilarMovieCollectionReusableView.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(SimilarMovieCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: reuseIdentifierHeader)
     }
     
@@ -61,7 +61,7 @@ class MovieDetailCollectionViewController: UICollectionViewController, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width - 2 * padding, height: 50)
+        return .init(width: view.frame.width - 2 * padding, height: 80)
     }
 
     // MARK: UICollectionViewDelegate
