@@ -12,11 +12,15 @@ private let reuseIdentifier = "SimilarMovieCollectionReusableView"
 private let reuseIdentifierHeader = "HeaderCollectionReusableView"
 private let padding: CGFloat = 16
 
+var imageCache = NSCache<NSString, UIImage>()
+
 class MovieDetailCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    
+    lazy var viewModel = MovieDetailViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        viewModel.getMainMovie()
         setupCollectionViewLayout()
         setupCollectionView()
 

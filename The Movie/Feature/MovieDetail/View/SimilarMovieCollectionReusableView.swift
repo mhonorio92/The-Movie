@@ -32,6 +32,8 @@ class SimilarMovieCollectionViewCell: UICollectionViewCell {
         return UILabel()
     }()
     
+    private static let baseImagePath = "https://image.tmdb.org/t/p/w500"
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         viewCodeSetup()
