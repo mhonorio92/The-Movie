@@ -1,107 +1,127 @@
 //
-//  MovieDetailCollectionViewController.swift
+//  MovieDetailViewController.swift
 //  The Movie
 //
 //  Created by Marcelo Silva Honorio on 15/09/20.
 //  Copyright © 2020 Mhonorio92. All rights reserved.
 //
 
+protocol MovieDetailDelegate {
+    func didLoadedMainMovieInfo()
+}
+
 import UIKit
 
 private let reuseIdentifier = "SimilarMovieCollectionReusableView"
-private let reuseIdentifierHeader = "HeaderCollectionReusableView"
+private let reuseIdentifierHeaderTitle = "HeaderTitleTableViewCell"
+private let baseImagePath = "https://image.tmdb.org/t/p/w500"
 private let padding: CGFloat = 16
 
 var imageCache = NSCache<NSString, UIImage>()
 
-class MovieDetailCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class MovieDetailViewController: UIViewController, MovieDetailDelegate {
+ 
+    let viewModel: MovieDetailViewModel
     
-    lazy var viewModel = MovieDetailViewModel()
+    lazy var imageView: UIImageView = {
+        return UIImageView()
+    }()
+    
+    lazy var detailsTableview: UITableView = {
+        return UITableView()
+    }()
+    
+    init(viewModel: MovieDetailViewModel = MovieDetailViewModel(delegate: nil)) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewCodeSetup()
+        configTableView()
+        configViewModel()
+        
+    }
+    
+    private func configTableView() {
+        detailsTableview.register(SimilarMovieTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        detailsTableview.register(HeaderTitleTableViewCell.self, forCellReuseIdentifier: reuseIdentifierHeaderTitle)
+        detailsTableview.delegate = self
+        detailsTableview.dataSource = self
+        detailsTableview.contentInset = UIEdgeInsets(top: 300, left: 0, bottom: 0, right: 0)
+        detailsTableview.isHidden = false
+        detailsTableview.contentMode = .scaleToFill
+    }
+    
+    private func configViewModel() {
+        viewModel.delegate = self
         viewModel.getMainMovie()
-        setupCollectionViewLayout()
-        setupCollectionView()
-
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
-    fileprivate func setupCollectionView() {
-        collectionView.contentInsetAdjustmentBehavior = .never
-        collectionView.register(SimilarMovieCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: reuseIdentifierHeader)
+    func didLoadedMainMovieInfo() {
+        guard let path = viewModel.mainMovie?.collection.imagePath else { return }
+        imageView.loadImage("\(baseImagePath)\(path)")
     }
     
-    fileprivate func setupCollectionViewLayout() {
-        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
-        }
-    }
-
-    // MARK: UICollectionViewDataSource
-
-//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .lightContent
 //    }
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseIdentifierHeader, for: indexPath)
-        return header
+}
+
+extension MovieDetailViewController: ViewCodePrococol {
+    func viewCodeHierarchySetup() {
+        
+        view.addSubview(detailsTableview)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: view.frame.width, height: 340)
+    func viewCodeConstraintSetup() {
+        
+        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 300)
+        imageView.image = UIImage.init(named: "sampleImage")
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        view.addSubview(imageView)
+        detailsTableview.fillSuperview()
     }
+    
+    func viewCodeAdditionalSetup() {
+        view.backgroundColor = .black
+        detailsTableview.backgroundColor = .black
+    }
+    
+}
 
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
+extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        // Configure the cell
     
-        return cell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.row == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierHeaderTitle, for: indexPath) as? HeaderTitleTableViewCell else { return UITableViewCell() }
+            cell.setup()
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? SimilarMovieTableViewCell else { return UITableViewCell() }
+            cell.setup()
+            return cell
+        }
+        
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width - 2 * padding, height: 80)
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableView.automaticDimension
+//    }
+//
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let y = 300 - (scrollView.contentOffset.y + 300)
+       let height = min(max(y, 0), 600)
+       imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: height)
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
 }

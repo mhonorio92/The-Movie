@@ -9,10 +9,21 @@
 import Foundation
 
 class MovieDetailViewModel {
-        
+    
+    var delegate: MovieDetailDelegate?
+    var mainMovie: MovieDetailResponse?
+    
+    init(delegate: MovieDetailDelegate?) {
+        self.delegate = delegate
+    }
+    
     func getMainMovie() {
-        TMDBAPI.loadDetail(requiredMovie: "24428") { (response) in
-            print(response)
+        TMDBAPI.loadDetail(type: MovieDetailResponse.self, requiredMovie: "24428", success: { (response) in
+            self.mainMovie = response
+            self.delegate?.didLoadedMainMovieInfo()
+            print(self.mainMovie ?? "")
+        }) { (failure) in
+            print(failure ?? "Error")
         }
     }
     

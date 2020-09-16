@@ -46,40 +46,38 @@ class TMDBAPI {
     
     private static let session = URLSession(configuration: configuration)
     
-    static func loadDetail(requiredMovie: String, onComplete: @escaping (Result<MovieDetailResponse, APIError>) -> Void) {
-        
+    static func loadDetail<T: Codable>(type: T.Type, requiredMovie: String, success: @escaping (T) -> Void, failure: @escaping (APIError?) -> Void){
         let fullURL = "\(basePath)\(requiredMovie)\(APIKey)\(portugueseLanguageQuery)"
         
         guard let url = URL(string: fullURL) else {
-            return onComplete(.failure(.badURL))
+            return failure(.badURL)
         }
         
         let task = session.dataTask(with: url) { (data, response, error) in
             if let _ = error {
-                return onComplete(.failure(.taskError))
+                return failure(.taskError)
             }
             
             guard let response = response as? HTTPURLResponse else {
-                return onComplete(.failure(.noResponse))
+                return failure(.noResponse)
             }
             
             if !(200...299 ~= response.statusCode) {
-                return onComplete(.failure(.invalidStatusCode(response.statusCode)))
+                return failure(.invalidStatusCode(response.statusCode))
             }
             
             guard let data = data else {
-                return onComplete(.failure(.noData))
+                return failure(.noData)
             }
             
             do {
-                let movie = try JSONDecoder().decode(MovieDetailResponse.self, from: data)
-                onComplete(.success(movie))
+                let movie = try JSONDecoder().decode(T.self, from: data)
+                success(movie)
             } catch {
-                return onComplete(.failure(.invalidJSON))
+                return failure(.invalidJSON)
             }
         }
         task.resume()
-        
     }
     
     static func getImage(imagePath: String, onComplete: @escaping (Result<MovieDetailResponse, APIError>) -> Void) {

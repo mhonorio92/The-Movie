@@ -1,5 +1,5 @@
 //
-//  SimilarMovieCollectionReusableView.swift
+//  SimilarMovieTableViewCell.swift
 //  The Movie
 //
 //  Created by Marcelo Silva Honorio on 15/09/20.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class SimilarMovieCollectionViewCell: UICollectionViewCell {
+class SimilarMovieTableViewCell: UITableViewCell {
     
-    lazy var imageView: UIImageView = {
+    lazy var listImageView: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "sampleImage"))
-        iv.contentMode = .scaleAspectFill
+        iv.contentMode = .scaleAspectFit
         return iv
     }()
     
@@ -34,39 +34,37 @@ class SimilarMovieCollectionViewCell: UICollectionViewCell {
     
     private static let baseImagePath = "https://image.tmdb.org/t/p/w500"
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    func setup() {
         viewCodeSetup()
-        self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
 
-extension SimilarMovieCollectionViewCell: ViewCodePrococol {
+extension SimilarMovieTableViewCell: ViewCodePrococol {
     func viewCodeHierarchySetup() {
-        contentView.addSubview(imageView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(yearLabel)
-        contentView.addSubview(genreLabel)
-        contentView.addSubview(separatorLine)
+        addSubview(listImageView)
+        addSubview(titleLabel)
+        addSubview(yearLabel)
+        addSubview(genreLabel)
+        addSubview(separatorLine)
     }
     
     func viewCodeConstraintSetup() {
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 40.0).isActive = true
+       
+        listImageView.translatesAutoresizingMaskIntoConstraints = false
+        listImageView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        listImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        listImageView.heightAnchor.constraint(equalToConstant: 80.0).isActive = true
+        listImageView.widthAnchor.constraint(equalToConstant: 40.0).isActive = true
+        listImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        listImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 16).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: listImageView.rightAnchor, constant: 16).isActive = true
         titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16).isActive = true
         
         yearLabel.translatesAutoresizingMaskIntoConstraints = false
-        yearLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 16).isActive = true
+        yearLabel.leftAnchor.constraint(equalTo: listImageView.rightAnchor, constant: 16).isActive = true
         yearLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
         
         genreLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -74,13 +72,14 @@ extension SimilarMovieCollectionViewCell: ViewCodePrococol {
         genreLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
         
         separatorLine.translatesAutoresizingMaskIntoConstraints = false
-        separatorLine.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 16).isActive = true
+        separatorLine.leftAnchor.constraint(equalTo: listImageView.rightAnchor, constant: 16).isActive = true
         separatorLine.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         separatorLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
         separatorLine.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
     
     func viewCodeThemeSetup() {
+        self.backgroundColor = .black
         titleLabel.textColor = .white
         titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         titleLabel.text = "O Filme"

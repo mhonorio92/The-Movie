@@ -27,9 +27,9 @@ extension UIImageView {
         }
     }
     
-    private func setImage(_ image: UIImage? = UIImage(named: "github")) {
+    private func setImage(_ image: UIImage? = UIImage(named: "launchImage")) {
         DispatchQueue.main.async {
-            self.backgroundColor = .white
+            self.backgroundColor = .black
             self.image = image
         }
     }
