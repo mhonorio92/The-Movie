@@ -113,38 +113,6 @@ class TMDBAPI {
         }
         task.resume()
     }
-    
-//    private static func request(httpMethod: HTTPMethod, httpBody: MovieDetailResponse, onComplete: @escaping (Result<Void, APIError>) -> Void) {
-//
-//
-//        guard let url = URL(string: "\(basePath)") else {
-//            return onComplete(.failure(.badURL))
-//        }
-//
-//        var request = URLRequest(url: url)
-//        request.httpMethod = httpMethod.rawValue
-//        request.httpBody = try? JSONEncoder().encode(httpBody)
-//
-//        session.dataTask(with: request) { (data, response, error) in
-//            if let _ = error {
-//                return onComplete(.failure(.taskError))
-//            }
-//
-//            guard let response = response as? HTTPURLResponse else {
-//                return onComplete(.failure(.noResponse))
-//            }
-//
-//            if !(200...299 ~= response.statusCode) {
-//                return onComplete(.failure(.invalidStatusCode(response.statusCode)))
-//            }
-//
-//            guard let _ = data else {
-//                return onComplete(.failure(.noData))
-//            }
-//            onComplete(.success(()))
-//        }.resume()
-//
-//    }
 }
 
 enum HTTPMethod: String {

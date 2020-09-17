@@ -94,9 +94,9 @@ extension HeaderTitleTableViewCell: ViewCodePrococol {
         setupFavoriteButton()
         favoriteLabel.text = "♡"
         likesLabel.textColor = .red
-        likesLabel.text = "\(movieData?.likes ?? 0) likes"
+        likesLabel.text = "♥\(movieData?.likes ?? 0) Curtidas"
         viewsLabel.textColor = .red
-        viewsLabel.text = "\(movieData?.views ?? 0)k views"
+        viewsLabel.text = "\(movieData?.views ?? 0)k Visualizações"
     }
 }
 

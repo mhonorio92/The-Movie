@@ -32,6 +32,10 @@ class MovieDetailViewController: UIViewController, MovieDetailDelegate {
         return UITableView()
     }()
     
+    lazy var footerView: UIView = {
+        return UIView()
+    }()
+    
     init(viewModel: MovieDetailViewModel = MovieDetailViewModel(delegate: nil)) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -46,7 +50,7 @@ class MovieDetailViewController: UIViewController, MovieDetailDelegate {
         viewCodeSetup()
         configTableView()
         configViewModel()
-        
+        //configFooterView()
     }
     
     private func configTableView() {
@@ -64,13 +68,26 @@ class MovieDetailViewController: UIViewController, MovieDetailDelegate {
         viewModel.getMainMovie()
     }
     
+    private func configFooterView() {
+        let footer = ButtonsView()
+        footer.setup()
+        detailsTableview.tableFooterView = footer
+    }
+    
+    @objc func likeButton() {
+        
+    }
+    
     func didLoadedMainMovieInfo() {
         guard let path = viewModel.mainMovie?.imagePath else { return }
         imageView.loadImage("\(baseImagePath)\(path)")
     }
     
     func didLoadedSimilarMovies() {
-        detailsTableview.reloadData()
+        DispatchQueue.main.async {
+            self.detailsTableview.reloadData()
+        }
+        
     }
 }
 
@@ -83,7 +100,6 @@ extension MovieDetailViewController: ViewCodePrococol {
     func viewCodeConstraintSetup() {
         
         imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 300)
-        imageView.image = UIImage.init(named: "sampleImage")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         view.addSubview(imageView)
