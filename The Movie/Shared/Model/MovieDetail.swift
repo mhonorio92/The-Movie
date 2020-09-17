@@ -14,7 +14,6 @@ struct MovieDetailResponse: Codable {
     let views: Float
     let collection: MovieCollection
     let movieId: Int
-    let genres: [Genre]
     
     enum CodingKeys: String, CodingKey {
         case title = "title"
@@ -22,7 +21,6 @@ struct MovieDetailResponse: Codable {
         case views = "popularity"
         case collection = "belongs_to_collection"
         case movieId = "id"
-        case genres = "genres"
     }
 }
 
@@ -33,13 +31,5 @@ struct MovieCollection: Codable {
     enum CodingKeys: String, CodingKey {
         case name
         case imagePath = "poster_path"
-    }
-}
-
-struct Genre: Codable {
-    let genreName: String
-    
-    enum CodingKeys: String, CodingKey {
-        case genreName = "name"
     }
 }

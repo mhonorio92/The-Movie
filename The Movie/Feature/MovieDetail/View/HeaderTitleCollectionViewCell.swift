@@ -27,7 +27,10 @@ class HeaderTitleTableViewCell: UITableViewCell {
     
     private static let baseImagePath = "https://image.tmdb.org/t/p/w500"
     
-    func setup() {
+    var movieData: MovieDetailResponse?
+    
+    func setup(movieData: MovieDetailResponse?) {
+        self.movieData = movieData
         viewCodeSetup()
     }
 }
@@ -67,13 +70,14 @@ extension HeaderTitleTableViewCell: ViewCodePrococol {
         titleLabel.textColor = .white
         titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
         titleLabel.numberOfLines = 0
-        titleLabel.text = "The Movie"
+        titleLabel.text = movieData?.collection.name
         favoriteLabel.textColor = .white
-        favoriteLabel.text = "Heart"
+        favoriteLabel.font = UIFont.systemFont(ofSize: 24)
+        favoriteLabel.text = "♡♥"
         likesLabel.textColor = .red
-        likesLabel.text = "2000 likes"
+        likesLabel.text = "\(movieData?.likes ?? 0) likes"
         viewsLabel.textColor = .red
-        viewsLabel.text = "30k views"
+        viewsLabel.text = "\(movieData?.views ?? 0)k views"
     }
 }
 

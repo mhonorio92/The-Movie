@@ -105,7 +105,7 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
         
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierHeaderTitle, for: indexPath) as? HeaderTitleTableViewCell else { return UITableViewCell() }
-            cell.setup()
+            cell.setup(movieData: viewModel.mainMovie)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? SimilarMovieTableViewCell else { return UITableViewCell() }

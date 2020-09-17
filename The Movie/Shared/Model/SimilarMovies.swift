@@ -8,3 +8,24 @@
 
 import Foundation
 
+struct SimilarMovies: Codable {
+    let titles: [Movies]
+    
+    enum CodingKeys: String, CodingKey {
+        case titles = "results"
+    }
+}
+
+struct Movies: Codable {
+    let title: String
+    let date: String
+    let genre: [Int]
+    let imagePath: String
+    
+    enum CodingKeys: String, CodingKey {
+        case title = "title"
+        case date = "release_date"
+        case genre = "genre_ids"
+        case imagePath = "poster_path"
+    }
+}
