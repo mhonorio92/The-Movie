@@ -13,11 +13,6 @@ protocol MovieDetailDelegate {
 
 import UIKit
 
-private let reuseIdentifier = "SimilarMovieCollectionReusableView"
-private let reuseIdentifierHeaderTitle = "HeaderTitleTableViewCell"
-private let baseImagePath = "https://image.tmdb.org/t/p/w500"
-private let padding: CGFloat = 16
-
 var imageCache = NSCache<NSString, UIImage>()
 
 class MovieDetailViewController: UIViewController, MovieDetailDelegate {
@@ -54,11 +49,11 @@ class MovieDetailViewController: UIViewController, MovieDetailDelegate {
     }
     
     private func configTableView() {
-        detailsTableview.register(SimilarMovieTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
-        detailsTableview.register(HeaderTitleTableViewCell.self, forCellReuseIdentifier: reuseIdentifierHeaderTitle)
+        detailsTableview.register(SimilarMovieTableViewCell.self, forCellReuseIdentifier: ConstantTableViewIdentifier.kReuseIdentifier)
+        detailsTableview.register(HeaderTitleTableViewCell.self, forCellReuseIdentifier: ConstantTableViewIdentifier.kReuseIdentifierHeaderTitle)
         detailsTableview.delegate = self
         detailsTableview.dataSource = self
-        detailsTableview.contentInset = UIEdgeInsets(top: 300, left: 0, bottom: 0, right: 0)
+        detailsTableview.contentInset = UIEdgeInsets(top: ConstantNumber.kCGFloat300, left: ConstantNumber.kCGFloatZero, bottom: ConstantNumber.kCGFloatZero, right: ConstantNumber.kCGFloatZero)
         detailsTableview.isHidden = false
         detailsTableview.contentMode = .scaleToFill
     }
@@ -80,7 +75,7 @@ class MovieDetailViewController: UIViewController, MovieDetailDelegate {
     
     func didLoadedMainMovieInfo() {
         guard let path = viewModel.mainMovie?.imagePath else { return }
-        imageView.loadImage("\(baseImagePath)\(path)")
+        imageView.loadImage("\(ConstantURL.kBaseImagePath)\(path)")
     }
     
     func didLoadedSimilarMovies() {
@@ -99,7 +94,7 @@ extension MovieDetailViewController: ViewCodePrococol {
     
     func viewCodeConstraintSetup() {
         
-        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 300)
+        imageView.frame = CGRect(x: ConstantNumber.kCGFloatZero, y: ConstantNumber.kCGFloatZero, width: UIScreen.main.bounds.size.width, height: ConstantNumber.kCGFloat300)
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         view.addSubview(imageView)
@@ -115,18 +110,18 @@ extension MovieDetailViewController: ViewCodePrococol {
 
 extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (viewModel.similarMovies?.titles.count ?? 1)
+        return (viewModel.similarMovies?.titles.count ?? ConstantNumber.kInteger1)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierHeaderTitle, for: indexPath) as? HeaderTitleTableViewCell else { return UITableViewCell() }
+        if indexPath.row == ConstantNumber.kIntegerZero {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ConstantTableViewIdentifier.kReuseIdentifierHeaderTitle, for: indexPath) as? HeaderTitleTableViewCell else { return UITableViewCell() }
             cell.setup(movieData: viewModel.mainMovie)
             cell.selectionStyle = .none
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? SimilarMovieTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ConstantTableViewIdentifier.kReuseIdentifier, for: indexPath) as? SimilarMovieTableViewCell else { return UITableViewCell() }
             cell.setup(currentSimilar: viewModel.similarMovies?.titles[indexPath.row])
             cell.selectionStyle = .none
             return cell
@@ -135,8 +130,8 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    let y = 300 - (scrollView.contentOffset.y + 300)
-       let height = min(max(y, 0), 700)
-       imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: height)
+    let y = ConstantNumber.kCGFloat300 - (scrollView.contentOffset.y + ConstantNumber.kCGFloat300)
+       let height = min(max(y, ConstantNumber.kCGFloatZero), ConstantNumber.kCGFloat700)
+       imageView.frame = CGRect(x: ConstantNumber.kCGFloatZero, y: ConstantNumber.kCGFloatZero, width: UIScreen.main.bounds.size.width, height: height)
     }
 }

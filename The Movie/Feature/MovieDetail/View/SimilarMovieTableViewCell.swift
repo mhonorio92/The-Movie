@@ -11,9 +11,6 @@ import UIKit
 class SimilarMovieTableViewCell: UITableViewCell {
     
     lazy var listImageView: UIImageView = {
-//        let iv = UIImageView(image: #imageLiteral(resourceName: "sampleImage"))
-//        iv.contentMode = .scaleAspectFit
-//        return iv
         return UIImageView()
     }()
     
@@ -32,59 +29,58 @@ class SimilarMovieTableViewCell: UITableViewCell {
     lazy var separatorLine: UILabel = {
         return UILabel()
     }()
-    
-    let baseImagePath = "https://image.tmdb.org/t/p/w500"
-    
+        
     var currentSimilar: Movies?
+    
     func setup(currentSimilar: Movies?) {
         self.currentSimilar = currentSimilar
         viewCodeSetup()
     }
  
     func getGenres(genres: [Int]) -> String {
-        var genresTitles = ""
+        var genresTitles = ConstantGenres.kEmpty
         for one in genres {
             switch one {
             case 28:
-                genresTitles = genresTitles + " Ação,"
+                genresTitles = genresTitles + ConstantGenres.kAction
             case 12:
-                genresTitles = genresTitles + " Aventura,"
+                genresTitles = genresTitles + ConstantGenres.kAdventure
             case 16:
-                genresTitles = genresTitles + " Animação,"
+                genresTitles = genresTitles + ConstantGenres.kAnimation
             case 35:
-                genresTitles = genresTitles + " Comédia,"
+                genresTitles = genresTitles + ConstantGenres.kComedy
             case 80:
-                genresTitles = genresTitles + " Crime,"
+                genresTitles = genresTitles + ConstantGenres.kCrime
             case 99:
-                genresTitles = genresTitles + " Documentário,"
+                genresTitles = genresTitles + ConstantGenres.kDocumentary
             case 18:
-                genresTitles = genresTitles + " Drama,"
+                genresTitles = genresTitles + ConstantGenres.kDrama
             case 10751:
-                genresTitles = genresTitles + " Família,"
+                genresTitles = genresTitles + ConstantGenres.kFamily
             case 14:
-                genresTitles = genresTitles + " Fantasia,"
+                genresTitles = genresTitles + ConstantGenres.kFantasy
             case 36:
-                genresTitles = genresTitles + " História,"
+                genresTitles = genresTitles + ConstantGenres.kHistory
             case 27:
-                genresTitles = genresTitles + " Terror,"
+                genresTitles = genresTitles + ConstantGenres.kHorror
             case 10402:
-                genresTitles = genresTitles + " Musical,"
+                genresTitles = genresTitles + ConstantGenres.kMusic
             case 9648:
-                genresTitles = genresTitles + " Mistério,"
+                genresTitles = genresTitles + ConstantGenres.kMistery
             case 10749:
-                genresTitles = genresTitles + " Romance,"
+                genresTitles = genresTitles + ConstantGenres.kRomance
             case 878:
-                genresTitles = genresTitles + " Ficção científica,"
+                genresTitles = genresTitles + ConstantGenres.kFScientific
             case 10770:
-                genresTitles = genresTitles + " Filme de TV,"
+                genresTitles = genresTitles + ConstantGenres.kTVMovie
             case 53:
-                genresTitles = genresTitles + " Suspense,"
+                genresTitles = genresTitles + ConstantGenres.kThriller
             case 10752:
-                genresTitles = genresTitles + " Guerra,"
+                genresTitles = genresTitles + ConstantGenres.kWar
             case 37:
-                genresTitles = genresTitles + " Ocidental,"
+                genresTitles = genresTitles + ConstantGenres.kWestern
             default:
-                genresTitles = genresTitles + ""
+                genresTitles = genresTitles + ConstantGenres.kEmpty
             }
         }
         genresTitles = String(genresTitles.dropLast())
@@ -135,7 +131,7 @@ extension SimilarMovieTableViewCell: ViewCodePrococol {
     
     func viewCodeThemeSetup() {
         self.backgroundColor = .black
-        listImageView.loadImage("\(baseImagePath)\(currentSimilar?.imagePath ?? "")")
+        listImageView.loadImage("\(ConstantURL.kBaseImagePath)\(currentSimilar?.imagePath ?? "")")
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
         titleLabel.font = UIFont.boldSystemFont(ofSize: 18)

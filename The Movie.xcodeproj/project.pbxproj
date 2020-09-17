@@ -24,6 +24,7 @@
 		2EFD44E62512D16D0037E4FD /* SimilarMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD44E52512D16D0037E4FD /* SimilarMovies.swift */; };
 		2EFD44E82512ED1C0037E4FD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD44E72512ED1C0037E4FD /* String+Extension.swift */; };
 		2EFD44EA25130CE70037E4FD /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD44E925130CE60037E4FD /* ButtonsView.swift */; };
+		2EFD44EC2513181F0037E4FD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD44EB2513181F0037E4FD /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		2EFD44E52512D16D0037E4FD /* SimilarMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMovies.swift; sourceTree = "<group>"; };
 		2EFD44E72512ED1C0037E4FD /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		2EFD44E925130CE60037E4FD /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
+		2EFD44EB2513181F0037E4FD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 		2EFD44C9251114640037E4FD /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				2EFD44ED251318280037E4FD /* Constants */,
 				2EFD44D6251173E20037E4FD /* Extensions */,
 				2EFD44D32511550B0037E4FD /* Protocol */,
 				2EFD44CA251114760037E4FD /* Model */,
@@ -215,6 +218,14 @@
 				2EFD44E72512ED1C0037E4FD /* String+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2EFD44ED251318280037E4FD /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				2EFD44EB2513181F0037E4FD /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +342,7 @@
 				2EFD44E62512D16D0037E4FD /* SimilarMovies.swift in Sources */,
 				2EFD44E02512562F0037E4FD /* TMDBAPI.swift in Sources */,
 				2EFD44DC251184650037E4FD /* MovieDetailViewModel.swift in Sources */,
+				2EFD44EC2513181F0037E4FD /* Constants.swift in Sources */,
 				2EFD44E425126EB20037E4FD /* HeaderTitleCollectionViewCell.swift in Sources */,
 				2EFD44DE251185F90037E4FD /* MovieDetail.swift in Sources */,
 			);
