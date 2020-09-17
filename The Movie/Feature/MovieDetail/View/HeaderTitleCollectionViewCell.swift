@@ -24,9 +24,7 @@ class HeaderTitleTableViewCell: UITableViewCell {
     lazy var viewsLabel: UILabel = {
         return UILabel()
     }()
-    
-    private static let baseImagePath = "https://image.tmdb.org/t/p/w500"
-    
+        
     var movieData: MovieDetailResponse?
     var status: Bool! = true
     
@@ -37,15 +35,15 @@ class HeaderTitleTableViewCell: UITableViewCell {
     
     private func setupFavoriteButton() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(chageButtonState))
-        gesture.numberOfTapsRequired = 1
+        gesture.numberOfTapsRequired = ConstantNumber.kInteger1
         favoriteLabel.addGestureRecognizer(gesture)
     }
     
     @objc func chageButtonState() {
         if status {
-            favoriteLabel.text = "♥"
+            favoriteLabel.text = ConstantLiterals.kFullHeart
         } else {
-            favoriteLabel.text = "♡"
+            favoriteLabel.text = ConstantLiterals.kEmptyHeart
         }
         status = status == true ? false : true
     }
@@ -62,41 +60,41 @@ extension HeaderTitleTableViewCell: ViewCodePrococol {
     func viewCodeConstraintSetup() {
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: ConstantNumber.kCGFloat16).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: ConstantNumber.kCGFloat16).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: ConstantNumber.kCGFloat16N).isActive = true
         
         favoriteLabel.translatesAutoresizingMaskIntoConstraints = false
-        favoriteLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
+        favoriteLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: ConstantNumber.kCGFloat16N).isActive = true
         favoriteLabel.centerYAnchor.constraint(equalTo: self.titleLabel.centerYAnchor).isActive = true
         
         likesLabel.translatesAutoresizingMaskIntoConstraints = false
-        likesLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
-        likesLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
-        likesLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16).isActive = true
+        likesLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: ConstantNumber.kCGFloat16).isActive = true
+        likesLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: ConstantNumber.kCGFloat8).isActive = true
+        likesLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: ConstantNumber.kCGFloat16N).isActive = true
         
         viewsLabel.translatesAutoresizingMaskIntoConstraints = false
-        viewsLabel.leftAnchor.constraint(equalTo: likesLabel.rightAnchor, constant: 16).isActive = true
-        viewsLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
-        viewsLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16).isActive = true
+        viewsLabel.leftAnchor.constraint(equalTo: likesLabel.rightAnchor, constant: ConstantNumber.kCGFloat16).isActive = true
+        viewsLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: ConstantNumber.kCGFloat16N).isActive = true
+        viewsLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: ConstantNumber.kCGFloat16N).isActive = true
         
     }
     
     func viewCodeThemeSetup() {
         self.backgroundColor = .clear
         titleLabel.textColor = .white
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
-        titleLabel.numberOfLines = 0
+        titleLabel.font = UIFont.boldSystemFont(ofSize: ConstantNumber.kCGFloat36)
+        titleLabel.numberOfLines = ConstantNumber.kIntegerZero
         titleLabel.text = movieData?.title
         favoriteLabel.textColor = .white
-        favoriteLabel.font = UIFont.systemFont(ofSize: 24)
+        favoriteLabel.font = UIFont.systemFont(ofSize: ConstantNumber.kCGFloat24)
         favoriteLabel.isUserInteractionEnabled = true
         setupFavoriteButton()
-        favoriteLabel.text = "♡"
+        favoriteLabel.text = ConstantLiterals.kEmptyHeart
         likesLabel.textColor = .red
-        likesLabel.text = "♥\(movieData?.likes ?? 0) Curtidas"
+        likesLabel.text = "\(ConstantLiterals.kFullHeart) \(movieData?.likes ?? ConstantNumber.kIntegerZero)\(ConstantLiterals.kLikes)"
         viewsLabel.textColor = .red
-        viewsLabel.text = "\(movieData?.views ?? 0)k Visualizações"
+        viewsLabel.text = "\(movieData?.views ?? Float(ConstantNumber.kIntegerZero))\(ConstantLiterals.kViews)"
     }
 }
 

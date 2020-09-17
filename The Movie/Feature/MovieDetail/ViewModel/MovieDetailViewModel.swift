@@ -24,7 +24,7 @@ class MovieDetailViewModel {
             self.delegate?.didLoadedMainMovieInfo()
             self.getSimilarMovies(similarOf: response.movieId)
         }) { (failure) in
-            print(failure ?? "Error")
+            print(failure ?? ConstantLiterals.kError)
         }
     }
     
@@ -33,7 +33,7 @@ class MovieDetailViewModel {
             self.similarMovies = response
             self.delegate?.didLoadedSimilarMovies()
         }) { (failure) in
-            print(failure ?? "Error")
+            print(failure ?? ConstantLiterals.kError)
         }
     }
     

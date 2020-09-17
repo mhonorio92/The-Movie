@@ -28,15 +28,9 @@ enum APIError: Error {
 
 
 class TMDBAPI {
-    
-    private static let basePath = "https://api.themoviedb.org/3/movie/"
-    private static let portugueseLanguageQuery = "&language=pt-BR"
-    private static let pageOfSimilarMovies = "&page=1"
-    private static let APIKey = "?api_key=307e043272896e80df61749d6f9242c4"
-    
+        
     private static let configuration: URLSessionConfiguration = {
         let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = ["Content-Type": "application/json"]
         configuration.allowsCellularAccess = true
         configuration.timeoutIntervalForRequest = 30
         configuration.httpMaximumConnectionsPerHost = 5
@@ -47,7 +41,7 @@ class TMDBAPI {
     private static let session = URLSession(configuration: configuration)
     
     static func loadDetail<T: Codable>(type: T.Type, requiredMovie: String, success: @escaping (T) -> Void, failure: @escaping (APIError?) -> Void){
-        let fullURL = "\(basePath)\(requiredMovie)\(APIKey)\(portugueseLanguageQuery)"
+        let fullURL = "\(ConstantURL.kBasePath)\(requiredMovie)\(ConstantURL.kAPIKey)\(ConstantURL.kPortugueseLanguageQuery)"
         
         guard let url = URL(string: fullURL) else {
             return failure(.badURL)
@@ -81,7 +75,7 @@ class TMDBAPI {
     }
     
     static func loadSimilars<T: Codable>(type: T.Type, similarOf: String, success: @escaping (T) -> Void, failure: @escaping (APIError?) -> Void){
-        let fullURL = "\(basePath)\(similarOf)/similar\(APIKey)\(portugueseLanguageQuery)\(pageOfSimilarMovies)"
+        let fullURL = "\(ConstantURL.kBasePath)\(similarOf)/similar\(ConstantURL.kAPIKey)\(ConstantURL.kPortugueseLanguageQuery)\(ConstantURL.kPageOfSimilarMovies)"
         
         guard let url = URL(string: fullURL) else {
             return failure(.badURL)

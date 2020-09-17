@@ -41,43 +41,43 @@ class SimilarMovieTableViewCell: UITableViewCell {
         var genresTitles = ConstantGenres.kEmpty
         for one in genres {
             switch one {
-            case 28:
+            case ConstantNumber.kInteger28:
                 genresTitles = genresTitles + ConstantGenres.kAction
-            case 12:
+            case ConstantNumber.kInteger12:
                 genresTitles = genresTitles + ConstantGenres.kAdventure
-            case 16:
+            case ConstantNumber.kInteger16:
                 genresTitles = genresTitles + ConstantGenres.kAnimation
-            case 35:
+            case ConstantNumber.kInteger35:
                 genresTitles = genresTitles + ConstantGenres.kComedy
-            case 80:
+            case ConstantNumber.kInteger80:
                 genresTitles = genresTitles + ConstantGenres.kCrime
-            case 99:
+            case ConstantNumber.kInteger99:
                 genresTitles = genresTitles + ConstantGenres.kDocumentary
-            case 18:
+            case ConstantNumber.kInteger18:
                 genresTitles = genresTitles + ConstantGenres.kDrama
-            case 10751:
+            case ConstantNumber.kInteger10751:
                 genresTitles = genresTitles + ConstantGenres.kFamily
-            case 14:
+            case ConstantNumber.kInteger14:
                 genresTitles = genresTitles + ConstantGenres.kFantasy
-            case 36:
+            case ConstantNumber.kInteger36:
                 genresTitles = genresTitles + ConstantGenres.kHistory
-            case 27:
+            case ConstantNumber.kInteger27:
                 genresTitles = genresTitles + ConstantGenres.kHorror
-            case 10402:
+            case ConstantNumber.kInteger10402:
                 genresTitles = genresTitles + ConstantGenres.kMusic
-            case 9648:
+            case ConstantNumber.kInteger9648:
                 genresTitles = genresTitles + ConstantGenres.kMistery
-            case 10749:
+            case ConstantNumber.kInteger10749:
                 genresTitles = genresTitles + ConstantGenres.kRomance
-            case 878:
+            case ConstantNumber.kInteger878:
                 genresTitles = genresTitles + ConstantGenres.kFScientific
-            case 10770:
+            case ConstantNumber.kInteger10770:
                 genresTitles = genresTitles + ConstantGenres.kTVMovie
-            case 53:
+            case ConstantNumber.kInteger53:
                 genresTitles = genresTitles + ConstantGenres.kThriller
-            case 10752:
+            case ConstantNumber.kInteger10752:
                 genresTitles = genresTitles + ConstantGenres.kWar
-            case 37:
+            case ConstantNumber.kInteger37:
                 genresTitles = genresTitles + ConstantGenres.kWestern
             default:
                 genresTitles = genresTitles + ConstantGenres.kEmpty
@@ -102,46 +102,46 @@ extension SimilarMovieTableViewCell: ViewCodePrococol {
         
        
         listImageView.translatesAutoresizingMaskIntoConstraints = false
-        listImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
+        listImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: ConstantNumber.kCGFloat16).isActive = true
         listImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        listImageView.heightAnchor.constraint(equalToConstant: 75.0).isActive = true
-        listImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        listImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
-        listImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8).isActive = true
+        listImageView.heightAnchor.constraint(equalToConstant: ConstantNumber.kCGFloat75).isActive = true
+        listImageView.widthAnchor.constraint(equalToConstant: ConstantNumber.kCGFloat50).isActive = true
+        listImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: ConstantNumber.kCGFloat8).isActive = true
+        listImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: ConstantNumber.kCGFloat8N).isActive = true
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.leftAnchor.constraint(equalTo: listImageView.rightAnchor, constant: 12).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: listImageView.rightAnchor, constant: ConstantNumber.kCGFloat12).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: ConstantNumber.kCGFloat16N).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: ConstantNumber.kCGFloat16).isActive = true
         
         yearLabel.translatesAutoresizingMaskIntoConstraints = false
-        yearLabel.leftAnchor.constraint(equalTo: listImageView.rightAnchor, constant: 16).isActive = true
-        yearLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
+        yearLabel.leftAnchor.constraint(equalTo: listImageView.rightAnchor, constant: ConstantNumber.kCGFloat16).isActive = true
+        yearLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: ConstantNumber.kCGFloat8).isActive = true
         
         genreLabel.translatesAutoresizingMaskIntoConstraints = false
-        genreLabel.leftAnchor.constraint(equalTo: yearLabel.rightAnchor, constant: 16).isActive = true
-        genreLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
+        genreLabel.leftAnchor.constraint(equalTo: yearLabel.rightAnchor, constant: ConstantNumber.kCGFloat16).isActive = true
+        genreLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: ConstantNumber.kCGFloat8).isActive = true
         
         separatorLine.translatesAutoresizingMaskIntoConstraints = false
-        separatorLine.leftAnchor.constraint(equalTo: listImageView.rightAnchor, constant: 16).isActive = true
-        separatorLine.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
-        separatorLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        separatorLine.leftAnchor.constraint(equalTo: listImageView.rightAnchor, constant: ConstantNumber.kCGFloat16).isActive = true
+        separatorLine.rightAnchor.constraint(equalTo: self.rightAnchor, constant: ConstantNumber.kCGFloat16N).isActive = true
+        separatorLine.heightAnchor.constraint(equalToConstant: ConstantNumber.kCGFloat1).isActive = true
         separatorLine.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
     
     func viewCodeThemeSetup() {
         self.backgroundColor = .black
-        listImageView.loadImage("\(ConstantURL.kBaseImagePath)\(currentSimilar?.imagePath ?? "")")
+        listImageView.loadImage("\(ConstantURL.kBaseImagePath)\(currentSimilar?.imagePath ?? ConstantLiterals.kEmpty)")
         titleLabel.textColor = .white
-        titleLabel.numberOfLines = 0
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        titleLabel.text = currentSimilar?.title ?? ""
+        titleLabel.numberOfLines = ConstantNumber.kIntegerZero
+        titleLabel.font = UIFont.boldSystemFont(ofSize: ConstantNumber.kCGFloat18)
+        titleLabel.text = currentSimilar?.title ?? ConstantLiterals.kEmpty
         yearLabel.textColor = .white
-        yearLabel.text = currentSimilar?.date.dateFormatter() ?? ""
+        yearLabel.text = currentSimilar?.date.dateFormatter() ?? ConstantLiterals.kEmpty
         genreLabel.textColor = .red
-        genreLabel.numberOfLines = 0
+        genreLabel.numberOfLines = ConstantNumber.kIntegerZero
         if let genre = currentSimilar?.genre {
-            genreLabel.text = getGenres(genres: Array(genre.prefix(2)))
+            genreLabel.text = getGenres(genres: Array(genre.prefix(ConstantNumber.kInteger2)))
         }
         separatorLine.backgroundColor = .darkGray
     }

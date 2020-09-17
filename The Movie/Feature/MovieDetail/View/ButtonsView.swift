@@ -33,10 +33,10 @@ class ButtonsView: UIView, ViewCodePrococol {
     
     @objc func chageButtonState() {
         if status {
-            likeLabel.text = "♥ Curtido"
+            likeLabel.text = ConstantLiterals.kLiked
             likeLabel.backgroundColor = .white
         } else {
-            likeLabel.text = "♡ Curtir"
+            likeLabel.text = ConstantLiterals.kWillLike
             likeLabel.backgroundColor = .black
         }
         status = status == true ? false : true
@@ -50,34 +50,34 @@ class ButtonsView: UIView, ViewCodePrococol {
     func viewCodeConstraintSetup() {
         DispatchQueue.main.async {
             self.likeLabel.translatesAutoresizingMaskIntoConstraints = false
-            self.likeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16).isActive = true
-            self.likeLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
-            self.likeLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
+            self.likeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: ConstantNumber.kCGFloat16).isActive = true
+            self.likeLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: ConstantNumber.kCGFloat16).isActive = true
+            self.likeLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: ConstantNumber.kCGFloat16N).isActive = true
             
             self.addToListLabel.translatesAutoresizingMaskIntoConstraints = false
-            self.addToListLabel.topAnchor.constraint(equalTo: self.likeLabel.bottomAnchor, constant: 16).isActive = true
-            self.addToListLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
-            self.addToListLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
-            self.addToListLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16).isActive = true
+            self.addToListLabel.topAnchor.constraint(equalTo: self.likeLabel.bottomAnchor, constant: ConstantNumber.kCGFloat16).isActive = true
+            self.addToListLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: ConstantNumber.kCGFloat16).isActive = true
+            self.addToListLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: ConstantNumber.kCGFloat16N).isActive = true
+            self.addToListLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: ConstantNumber.kCGFloat16N).isActive = true
         }
     }
     
     func viewCodeThemeSetup() {
         self.backgroundColor = .black
         likeLabel.backgroundColor = .black
-        likeLabel.layer.borderWidth = 1
-        likeLabel.layer.cornerRadius = 4
+        likeLabel.layer.borderWidth = ConstantNumber.kCGFloat1
+        likeLabel.layer.cornerRadius = ConstantNumber.kCGFloat4
         likeLabel.layer.borderColor = UIColor.white.cgColor
         addToListLabel.backgroundColor = .black
-        addToListLabel.layer.borderWidth = 1
-        addToListLabel.layer.cornerRadius = 4
+        addToListLabel.layer.borderWidth = ConstantNumber.kCGFloat1
+        addToListLabel.layer.cornerRadius = ConstantNumber.kCGFloat4
         addToListLabel.layer.borderColor = UIColor.white.cgColor
     }
     
     func viewCodeAdditionalSetup() {
         setupFavoriteButton()
         likeLabel.isUserInteractionEnabled = true
-        likeLabel.text = "♡ Curtir"
-        addToListLabel.text = "Adicionar às Minhas Listas"
+        likeLabel.text = ConstantLiterals.kWillLike
+        addToListLabel.text = ConstantLiterals.kAddToList
     }
 }
