@@ -80,41 +80,71 @@ class TMDBAPI {
         task.resume()
     }
     
-    static func getImage(imagePath: String, onComplete: @escaping (Result<MovieDetailResponse, APIError>) -> Void) {
+    static func loadSimilars<T: Codable>(type: T.Type, similarOf: String, success: @escaping (T) -> Void, failure: @escaping (APIError?) -> Void){
+        let fullURL = "\(basePath)\(similarOf)/similar\(APIKey)\(portugueseLanguageQuery)\(pageOfSimilarMovies)"
         
-    }
-    
-    private static func request(httpMethod: HTTPMethod, httpBody: MovieDetailResponse, onComplete: @escaping (Result<Void, APIError>) -> Void) {
-        
-        
-        guard let url = URL(string: "\(basePath)") else {
-            return onComplete(.failure(.badURL))
+        guard let url = URL(string: fullURL) else {
+            return failure(.badURL)
         }
         
-        var request = URLRequest(url: url)
-        request.httpMethod = httpMethod.rawValue
-        request.httpBody = try? JSONEncoder().encode(httpBody)
-        
-        session.dataTask(with: request) { (data, response, error) in
+        let task = session.dataTask(with: url) { (data, response, error) in
             if let _ = error {
-                return onComplete(.failure(.taskError))
+                return failure(.taskError)
             }
             
             guard let response = response as? HTTPURLResponse else {
-                return onComplete(.failure(.noResponse))
+                return failure(.noResponse)
             }
             
             if !(200...299 ~= response.statusCode) {
-                return onComplete(.failure(.invalidStatusCode(response.statusCode)))
+                return failure(.invalidStatusCode(response.statusCode))
             }
             
-            guard let _ = data else {
-                return onComplete(.failure(.noData))
+            guard let data = data else {
+                return failure(.noData)
             }
-            onComplete(.success(()))
-        }.resume()
-        
+            
+            do {
+                let movies = try JSONDecoder().decode(T.self, from: data)
+                success(movies)
+            } catch {
+                return failure(.invalidJSON)
+            }
+        }
+        task.resume()
     }
+    
+//    private static func request(httpMethod: HTTPMethod, httpBody: MovieDetailResponse, onComplete: @escaping (Result<Void, APIError>) -> Void) {
+//
+//
+//        guard let url = URL(string: "\(basePath)") else {
+//            return onComplete(.failure(.badURL))
+//        }
+//
+//        var request = URLRequest(url: url)
+//        request.httpMethod = httpMethod.rawValue
+//        request.httpBody = try? JSONEncoder().encode(httpBody)
+//
+//        session.dataTask(with: request) { (data, response, error) in
+//            if let _ = error {
+//                return onComplete(.failure(.taskError))
+//            }
+//
+//            guard let response = response as? HTTPURLResponse else {
+//                return onComplete(.failure(.noResponse))
+//            }
+//
+//            if !(200...299 ~= response.statusCode) {
+//                return onComplete(.failure(.invalidStatusCode(response.statusCode)))
+//            }
+//
+//            guard let _ = data else {
+//                return onComplete(.failure(.noData))
+//            }
+//            onComplete(.success(()))
+//        }.resume()
+//
+//    }
 }
 
 enum HTTPMethod: String {

@@ -12,6 +12,7 @@ class MovieDetailViewModel {
     
     var delegate: MovieDetailDelegate?
     var mainMovie: MovieDetailResponse?
+    var similarMovies: SimilarMovies?
     
     init(delegate: MovieDetailDelegate?) {
         self.delegate = delegate
@@ -21,7 +22,16 @@ class MovieDetailViewModel {
         TMDBAPI.loadDetail(type: MovieDetailResponse.self, requiredMovie: "24428", success: { (response) in
             self.mainMovie = response
             self.delegate?.didLoadedMainMovieInfo()
-            print(self.mainMovie ?? "")
+            self.getSimilarMovies(similarOf: response.movieId)
+        }) { (failure) in
+            print(failure ?? "Error")
+        }
+    }
+    
+    func getSimilarMovies(similarOf: Int) {
+        TMDBAPI.loadSimilars(type: SimilarMovies.self, similarOf: String(similarOf), success: { (response) in
+            self.similarMovies = response
+            self.delegate?.didLoadedSimilarMovies()
         }) { (failure) in
             print(failure ?? "Error")
         }

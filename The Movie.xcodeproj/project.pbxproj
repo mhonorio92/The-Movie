@@ -22,6 +22,7 @@
 		2EFD44E225126ACC0037E4FD /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD44E125126ACB0037E4FD /* UIImageView+Extension.swift */; };
 		2EFD44E425126EB20037E4FD /* HeaderTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD44E325126EB20037E4FD /* HeaderTitleCollectionViewCell.swift */; };
 		2EFD44E62512D16D0037E4FD /* SimilarMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD44E52512D16D0037E4FD /* SimilarMovies.swift */; };
+		2EFD44E82512ED1C0037E4FD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD44E72512ED1C0037E4FD /* String+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		2EFD44E125126ACB0037E4FD /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		2EFD44E325126EB20037E4FD /* HeaderTitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		2EFD44E52512D16D0037E4FD /* SimilarMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMovies.swift; sourceTree = "<group>"; };
+		2EFD44E72512ED1C0037E4FD /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 			children = (
 				2EFD44D925117B5D0037E4FD /* UIView+Extension.swift */,
 				2EFD44E125126ACB0037E4FD /* UIImageView+Extension.swift */,
+				2EFD44E72512ED1C0037E4FD /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				2EFD44DA25117B5D0037E4FD /* UIView+Extension.swift in Sources */,
 				2ED1A88E2510FE8F0042AB2D /* AppDelegate.swift in Sources */,
 				2EFD44CE251143060037E4FD /* MovieDetailCollectionViewController.swift in Sources */,
+				2EFD44E82512ED1C0037E4FD /* String+Extension.swift in Sources */,
 				2EFD44D5251155400037E4FD /* ViewCodeProtocol.swift in Sources */,
 				2EFD44D22511521E0037E4FD /* SimilarMovieTableViewCell.swift in Sources */,
 				2EFD44E62512D16D0037E4FD /* SimilarMovies.swift in Sources */,

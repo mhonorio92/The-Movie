@@ -8,6 +8,7 @@
 
 protocol MovieDetailDelegate {
     func didLoadedMainMovieInfo()
+    func didLoadedSimilarMovies()
 }
 
 import UIKit
@@ -64,13 +65,13 @@ class MovieDetailViewController: UIViewController, MovieDetailDelegate {
     }
     
     func didLoadedMainMovieInfo() {
-        guard let path = viewModel.mainMovie?.collection.imagePath else { return }
+        guard let path = viewModel.mainMovie?.imagePath else { return }
         imageView.loadImage("\(baseImagePath)\(path)")
     }
     
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return .lightContent
-//    }
+    func didLoadedSimilarMovies() {
+        detailsTableview.reloadData()
+    }
 }
 
 extension MovieDetailViewController: ViewCodePrococol {
@@ -98,7 +99,7 @@ extension MovieDetailViewController: ViewCodePrococol {
 
 extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return (viewModel.similarMovies?.titles.count ?? 1)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -106,22 +107,20 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierHeaderTitle, for: indexPath) as? HeaderTitleTableViewCell else { return UITableViewCell() }
             cell.setup(movieData: viewModel.mainMovie)
+            cell.selectionStyle = .none
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? SimilarMovieTableViewCell else { return UITableViewCell() }
-            cell.setup()
+            cell.setup(currentSimilar: viewModel.similarMovies?.titles[indexPath.row])
+            cell.selectionStyle = .none
             return cell
         }
         
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableView.automaticDimension
-//    }
-//
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
     let y = 300 - (scrollView.contentOffset.y + 300)
-       let height = min(max(y, 0), 600)
+       let height = min(max(y, 0), 700)
        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: height)
     }
 }

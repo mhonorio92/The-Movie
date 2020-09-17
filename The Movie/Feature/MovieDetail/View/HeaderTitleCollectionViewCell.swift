@@ -28,10 +28,26 @@ class HeaderTitleTableViewCell: UITableViewCell {
     private static let baseImagePath = "https://image.tmdb.org/t/p/w500"
     
     var movieData: MovieDetailResponse?
+    var status: Bool! = true
     
     func setup(movieData: MovieDetailResponse?) {
         self.movieData = movieData
         viewCodeSetup()
+    }
+    
+    private func setupFavoriteButton() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(chageButtonState))
+        gesture.numberOfTapsRequired = 1
+        favoriteLabel.addGestureRecognizer(gesture)
+    }
+    
+    @objc func chageButtonState() {
+        if status {
+            favoriteLabel.text = "♥"
+        } else {
+            favoriteLabel.text = "♡"
+        }
+        status = status == true ? false : true
     }
 }
 
@@ -48,6 +64,7 @@ extension HeaderTitleTableViewCell: ViewCodePrococol {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
         titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
         
         favoriteLabel.translatesAutoresizingMaskIntoConstraints = false
         favoriteLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true
@@ -66,14 +83,16 @@ extension HeaderTitleTableViewCell: ViewCodePrococol {
     }
     
     func viewCodeThemeSetup() {
-        self.backgroundColor = .black
+        self.backgroundColor = .clear
         titleLabel.textColor = .white
         titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
         titleLabel.numberOfLines = 0
-        titleLabel.text = movieData?.collection.name
+        titleLabel.text = movieData?.title
         favoriteLabel.textColor = .white
         favoriteLabel.font = UIFont.systemFont(ofSize: 24)
-        favoriteLabel.text = "♡♥"
+        favoriteLabel.isUserInteractionEnabled = true
+        setupFavoriteButton()
+        favoriteLabel.text = "♡"
         likesLabel.textColor = .red
         likesLabel.text = "\(movieData?.likes ?? 0) likes"
         viewsLabel.textColor = .red
